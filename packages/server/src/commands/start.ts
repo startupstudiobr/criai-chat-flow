@@ -16,8 +16,8 @@ let processExitCode = EXIT_CODE.SUCCESS
 export default class Start extends Command {
     static args = []
     static flags = {
-        FLOWISE_USERNAME: Flags.string(),
-        FLOWISE_PASSWORD: Flags.string(),
+        CRIAI_USERNAME: Flags.string(),
+        CRIAI_PASSWORD: Flags.string(),
         PORT: Flags.string(),
         PASSPHRASE: Flags.string(),
         DEBUG: Flags.string(),
@@ -75,8 +75,8 @@ export default class Start extends Command {
         if (flags.DEBUG) process.env.DEBUG = flags.DEBUG
 
         // Authorization
-        if (flags.FLOWISE_USERNAME) process.env.FLOWISE_USERNAME = flags.FLOWISE_USERNAME
-        if (flags.FLOWISE_PASSWORD) process.env.FLOWISE_PASSWORD = flags.FLOWISE_PASSWORD
+        if (flags.CRIAI_USERNAME) process.env.CRIAI_USERNAME = flags.CRIAI_USERNAME
+        if (flags.CRIAI_PASSWORD) process.env.CRIAI_PASSWORD = flags.CRIAI_PASSWORD
         if (flags.APIKEY_PATH) process.env.APIKEY_PATH = flags.APIKEY_PATH
 
         // Credentials

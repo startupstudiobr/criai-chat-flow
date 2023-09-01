@@ -1,19 +1,19 @@
 <!-- markdownlint-disable MD030 -->
 
-# Flowise Components
+# Criai Chat Components
 
-English | [中文](<./README-ZH.md>)
+English
 
-Apps integration for Flowise. Contain Nodes and Credentials.
+Apps integration for Criai Chat. Contain Nodes and Credentials.
 
-![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
+![Criai](https://github.com/startupstudiobr/criai-chat/blob/main/images/criai.gif?raw=true)
 
 Install:
 
 ```bash
-npm i flowise-components
+npm i criai-components
 ```
 
 ## License
 
-Source code in this repository is made available under the [MIT License](https://github.com/FlowiseAI/Flowise/blob/master/LICENSE.md).
+Source code in this repository is made available under the [MIT License](https://github.com/startupstudiobr/criai-chat/blob/master/LICENSE.md).

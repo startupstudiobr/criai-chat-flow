@@ -1,19 +1,19 @@
 <!-- markdownlint-disable MD030 -->
 
-# Flowise UI
+# Criai Chat UI
 
-English | [中文](<./README-ZH.md>)
+English
 
-React frontend ui for Flowise.
+React frontend ui for Criai.
 
-![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
+![Criai](https://github.com/startupstudiobr/criai-chat/blob/main/images/criai.gif?raw=true)
 
 Install:
 
 ```bash
-npm i flowise-ui
+npm i criai-chat-ui
 ```
 
 ## License
 
-Source code in this repository is made available under the [MIT License](https://github.com/FlowiseAI/Flowise/blob/master/LICENSE.md).
+Source code in this repository is made available under the [MIT License](https://github.com/startupstudiobr/criai-chat/blob/master/LICENSE.md).

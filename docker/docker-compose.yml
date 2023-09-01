@@ -7,8 +7,8 @@ services:
         environment:
             - PORT=${PORT}
             - PASSPHRASE=${PASSPHRASE}
-            - FLOWISE_USERNAME=${FLOWISE_USERNAME}
-            - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
+            - CRIAI_USERNAME=${CRIAI_USERNAME}
+            - CRIAI_PASSWORD=${CRIAI_PASSWORD}
             - DEBUG=${DEBUG}
             - DATABASE_PATH=${DATABASE_PATH}
             - APIKEY_PATH=${APIKEY_PATH}

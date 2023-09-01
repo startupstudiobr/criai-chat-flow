@@ -100,9 +100,9 @@ export class App {
         // Add the expressRequestLogger middleware to log all requests
         this.app.use(expressRequestLogger)
 
-        if (process.env.FLOWISE_USERNAME && process.env.FLOWISE_PASSWORD) {
-            const username = process.env.FLOWISE_USERNAME
-            const password = process.env.FLOWISE_PASSWORD
+        if (process.env.CRIAI_USERNAME && process.env.CRIAI_PASSWORD) {
+            const username = process.env.CRIAI_USERNAME
+            const password = process.env.CRIAI_PASSWORD
             const basicAuthMiddleware = basicAuth({
                 users: { [username]: password }
             })
@@ -381,7 +381,6 @@ export class App {
             const body = req.body
             const newChatMessage = new ChatMessage()
             Object.assign(newChatMessage, body)
-
             const chatmessage = this.AppDataSource.getRepository(ChatMessage).create(newChatMessage)
             const results = await this.AppDataSource.getRepository(ChatMessage).save(chatmessage)
 
@@ -932,6 +931,7 @@ export class App {
                   })
 
             logger.debug(`[server]: Finished running ${nodeToExecuteData.label} (${nodeToExecuteData.id})`)
+
             return res.json(result)
         } catch (e: any) {
             logger.error('[server]: Error:', e)
