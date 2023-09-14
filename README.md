@@ -164,4 +164,4 @@ Criai support different environment variables to configure your instance. You ca
 
 ## 📄 License
 
-Source code in this repository is made available under the [MIT License](LICENSE.md).
+Source code in this repository is made available under the [Apache License Version 2.0](LICENSE.md).
