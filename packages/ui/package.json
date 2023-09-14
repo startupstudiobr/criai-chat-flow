@@ -17,7 +17,7 @@
         "@tabler/icons": "^1.39.1",
         "clsx": "^1.1.1",
         "criai-chat-embed": "*",
-        "criai-chat-embed-react": "^1.0.2",
+        "criai-chat-embed-react": "*",
         "flowise-react-json-view": "*",
         "formik": "^2.2.6",
         "framer-motion": "^4.1.13",
