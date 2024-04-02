@@ -1,23 +1,32 @@
 version: '3.1'
 
 services:
-    flowise:
-        image: flowiseai/flowise
+    criai:
+        image: criai/chat
         restart: always
         environment:
             - PORT=${PORT}
-            - PASSPHRASE=${PASSPHRASE}
             - CRIAI_USERNAME=${CRIAI_USERNAME}
             - CRIAI_PASSWORD=${CRIAI_PASSWORD}
             - DEBUG=${DEBUG}
             - DATABASE_PATH=${DATABASE_PATH}
+            - DATABASE_TYPE=${DATABASE_TYPE}
+            - DATABASE_PORT=${DATABASE_PORT}
+            - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_NAME=${DATABASE_NAME}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_SSL=${DATABASE_SSL}
+            - DATABASE_SSL_KEY_BASE64=${DATABASE_SSL_KEY_BASE64}
             - APIKEY_PATH=${APIKEY_PATH}
             - SECRETKEY_PATH=${SECRETKEY_PATH}
-            - FLOWISE_SECRETKEY_OVERWRITE=${FLOWISE_SECRETKEY_OVERWRITE}
+            - CRIAI_SECRETKEY_OVERWRITE=${CRIAI_SECRETKEY_OVERWRITE}
             - LOG_LEVEL=${LOG_LEVEL}
             - LOG_PATH=${LOG_PATH}
+            - BLOB_STORAGE_PATH=${BLOB_STORAGE_PATH}
+            - DISABLE_CRIAI_TELEMETRY=${DISABLE_CRIAI_TELEMETRY}
         ports:
             - '${PORT}:${PORT}'
         volumes:
-            - ~/.flowise:/root/.flowise
-        command: /bin/sh -c "sleep 3; flowise start"
+            - ~/.criai:/root/.criai
+        command: /bin/sh -c "sleep 3; criai start"

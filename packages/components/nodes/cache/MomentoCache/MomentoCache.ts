@@ -1,6 +1,6 @@
-import { getBaseClasses, getCredentialData, getCredentialParam, ICommonObject, INode, INodeData, INodeParams } from '../../../src'
-import { MomentoCache as LangchainMomentoCache } from 'langchain/cache/momento'
 import { CacheClient, Configurations, CredentialProvider } from '@gomomento/sdk'
+import { MomentoCache as LangchainMomentoCache } from '@langchain/community/caches/momento'
+import { getBaseClasses, getCredentialData, getCredentialParam, ICommonObject, INode, INodeData, INodeParams } from '../../../src'
 
 class MomentoCache implements INode {
     label: string
@@ -19,7 +19,8 @@ class MomentoCache implements INode {
         this.name = 'momentoCache'
         this.version = 1.0
         this.type = 'MomentoCache'
-        this.icon = 'momento.png'
+        this.description = 'Cache LLM response using Momento, a distributed, serverless cache'
+        this.icon = 'Momento.svg'
         this.category = 'Cache'
         this.baseClasses = [this.type, ...getBaseClasses(LangchainMomentoCache)]
         this.credential = {

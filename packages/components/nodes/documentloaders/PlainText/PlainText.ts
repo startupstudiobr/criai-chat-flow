@@ -1,6 +1,7 @@
-import { INode, INodeData, INodeParams } from '../../../src/Interface'
+import { INode, INodeData, INodeOutputsValue, INodeParams } from '../../../src/Interface'
 import { TextSplitter } from 'langchain/text_splitter'
-import { Document } from 'langchain/document'
+import { Document } from '@langchain/core/documents'
+import { handleEscapeCharacters } from '../../../src'
 
 class PlainText_DocumentLoaders implements INode {
     label: string
@@ -12,11 +13,12 @@ class PlainText_DocumentLoaders implements INode {
     category: string
     baseClasses: string[]
     inputs: INodeParams[]
+    outputs: INodeOutputsValue[]
 
     constructor() {
         this.label = 'Plain Text'
         this.name = 'plainText'
-        this.version = 1.0
+        this.version = 2.0
         this.type = 'Document'
         this.icon = 'plaintext.svg'
         this.category = 'Document Loaders'
@@ -45,12 +47,27 @@ class PlainText_DocumentLoaders implements INode {
                 additionalParams: true
             }
         ]
+        this.outputs = [
+            {
+                label: 'Document',
+                name: 'document',
+                description: 'Array of document objects containing metadata and pageContent',
+                baseClasses: [...this.baseClasses, 'json']
+            },
+            {
+                label: 'Text',
+                name: 'text',
+                description: 'Concatenated string from pageContent of documents',
+                baseClasses: ['string', 'json']
+            }
+        ]
     }
 
     async init(nodeData: INodeData): Promise<any> {
         const textSplitter = nodeData.inputs?.textSplitter as TextSplitter
         const text = nodeData.inputs?.text as string
         const metadata = nodeData.inputs?.metadata
+        const output = nodeData.outputs?.output as string
 
         let alldocs: Document<Record<string, any>>[] = []
 
@@ -65,9 +82,9 @@ class PlainText_DocumentLoaders implements INode {
             )
         }
 
+        let finaldocs: Document<Record<string, any>>[] = []
         if (metadata) {
             const parsedMetadata = typeof metadata === 'object' ? metadata : JSON.parse(metadata)
-            let finaldocs: Document<Record<string, any>>[] = []
             for (const doc of alldocs) {
                 const newdoc = {
                     ...doc,
@@ -78,10 +95,19 @@ class PlainText_DocumentLoaders implements INode {
                 }
                 finaldocs.push(newdoc)
             }
-            return finaldocs
+        } else {
+            finaldocs = alldocs
         }
 
-        return alldocs
+        if (output === 'document') {
+            return finaldocs
+        } else {
+            let finaltext = ''
+            for (const doc of finaldocs) {
+                finaltext += `${doc.pageContent}\n`
+            }
+            return handleEscapeCharacters(finaltext, false)
+        }
     }
 }
 
