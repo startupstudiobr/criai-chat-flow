@@ -4,7 +4,7 @@
 
 [English](./README.md) | 中文
 
-![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
+![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/criai.gif?raw=true)
 
 拖放界面来构建自定义的 LLM 流程
 
@@ -12,12 +12,12 @@
 
 1. 安装 Flowise
     ```bash
-    npm install -g flowise
+    npm install -g criai
     ```
 2. 启动 Flowise
 
     ```bash
-    npx flowise start
+    npx criai start
     ```
 
 3. 打开[http://localhost:3000](http://localhost:3000)
@@ -33,35 +33,35 @@ FLOWISE_PASSWORD=1234
 
 ## 🌱 环境变量
 
-Flowise 支持不同的环境变量来配置您的实例。您可以在`packages/server`文件夹中的`.env`文件中指定以下变量。阅读[更多](https://docs.flowiseai.com/environment-variables)
+Flowise 支持不同的环境变量来配置您的实例。您可以在`packages/server`文件夹中的`.env`文件中指定以下变量。阅读[更多](https://docs.criaiai.com/environment-variables)
 
 您还可以在使用`npx`时指定环境变量。例如：
 
 ```
-npx flowise start --PORT=3000 --DEBUG=true
+npx criai start --PORT=3000 --DEBUG=true
 ```
 
 ## 📖 文档
 
-[Flowise 文档](https://docs.flowiseai.com/)
+[Flowise 文档](https://docs.criaiai.com/)
 
 ## 🌐 自托管
 
-### [Railway](https://docs.flowiseai.com/deployment/railway)
+### [Railway](https://docs.criaiai.com/deployment/railway)
 
 [![在Railway上部署](https://railway.app/button.svg)](https://railway.app/template/YK7J0v)
 
-### [Render](https://docs.flowiseai.com/deployment/render)
+### [Render](https://docs.criaiai.com/deployment/render)
 
-[![部署到Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.flowiseai.com/deployment/render)
+[![部署到Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.criaiai.com/deployment/render)
 
-### [AWS](https://docs.flowiseai.com/deployment/aws)
+### [AWS](https://docs.criaiai.com/deployment/aws)
 
-### [Azure](https://docs.flowiseai.com/deployment/azure)
+### [Azure](https://docs.criaiai.com/deployment/azure)
 
-### [DigitalOcean](https://docs.flowiseai.com/deployment/digital-ocean)
+### [DigitalOcean](https://docs.criaiai.com/deployment/digital-ocean)
 
-### [GCP](https://docs.flowiseai.com/deployment/gcp)
+### [GCP](https://docs.criaiai.com/deployment/gcp)
 
 ## 💻 云托管
 

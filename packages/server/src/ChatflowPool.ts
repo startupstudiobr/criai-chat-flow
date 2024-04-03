@@ -1,4 +1,4 @@
-import { ICommonObject } from 'flowise-components'
+import { ICommonObject } from 'criai-components'
 import { IActiveChatflows, INodeData, IReactFlowNode } from './Interface'
 import logger from './utils/logger'
 

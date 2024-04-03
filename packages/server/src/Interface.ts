@@ -1,4 +1,4 @@
-import { ICommonObject, IFileUpload, INode, INodeData as INodeDataFromComponent, INodeParams } from 'flowise-components'
+import { ICommonObject, IFileUpload, INode, INodeData as INodeDataFromComponent, INodeParams } from 'criai-components'
 
 export type MessageType = 'apiMessage' | 'userMessage'
 

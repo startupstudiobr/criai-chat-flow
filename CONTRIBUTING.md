@@ -118,7 +118,7 @@ Flowise has 3 different modules in a single mono repository.
 
 ## 🌱 Env Variables
 
-Flowise support different environment variables to configure your instance. You can specify the following variables in the `.env` file inside `packages/server` folder. Read [more](https://docs.flowiseai.com/environment-variables)
+Flowise support different environment variables to configure your instance. You can specify the following variables in the `.env` file inside `packages/server` folder. Read [more](https://docs.criaiai.com/environment-variables)
 
 | Variable                    | Description                                                                  | Type                                             | Default                             |
 | --------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
@@ -129,14 +129,14 @@ Flowise support different environment variables to configure your instance. You 
 | FLOWISE_PASSWORD            | Password to login                                                            | String                                           |                                     |
 | FLOWISE_FILE_SIZE_LIMIT     | Upload File Size Limit                                                       | String                                           | 50mb                                |
 | DEBUG                       | Print logs from components                                                   | Boolean                                          |                                     |
-| BLOB_STORAGE_PATH           | Location where uploaded files are stored                                     | String                                           | `your-home-dir/.flowise/storage`    |
+| BLOB_STORAGE_PATH           | Location where uploaded files are stored                                     | String                                           | `your-home-dir/.criai/storage`    |
 | LOG_PATH                    | Location where log files are stored                                          | String                                           | `your-path/Flowise/logs`            |
 | LOG_LEVEL                   | Different levels of logs                                                     | Enum String: `error`, `info`, `verbose`, `debug` | `info`                              |
 | APIKEY_PATH                 | Location where api keys are saved                                            | String                                           | `your-path/Flowise/packages/server` |
 | TOOL_FUNCTION_BUILTIN_DEP   | NodeJS built-in modules to be used for Tool Function                         | String                                           |                                     |
 | TOOL_FUNCTION_EXTERNAL_DEP  | External modules to be used for Tool Function                                | String                                           |                                     |
-| DATABASE_TYPE               | Type of database to store the flowise data                                   | Enum String: `sqlite`, `mysql`, `postgres`       | `sqlite`                            |
-| DATABASE_PATH               | Location where database is saved (When DATABASE_TYPE is sqlite)              | String                                           | `your-home-dir/.flowise`            |
+| DATABASE_TYPE               | Type of database to store the criai data                                   | Enum String: `sqlite`, `mysql`, `postgres`       | `sqlite`                            |
+| DATABASE_PATH               | Location where database is saved (When DATABASE_TYPE is sqlite)              | String                                           | `your-home-dir/.criai`            |
 | DATABASE_HOST               | Host URL or IP address (When DATABASE_TYPE is not sqlite)                    | String                                           |                                     |
 | DATABASE_PORT               | Database port (When DATABASE_TYPE is not sqlite)                             | String                                           |                                     |
 | DATABASE_USER               | Database username (When DATABASE_TYPE is not sqlite)                         | String                                           |                                     |
@@ -151,7 +151,7 @@ Flowise support different environment variables to configure your instance. You 
 You can also specify the env variables when using `npx`. For example:
 
 ```
-npx flowise start --PORT=3000 --DEBUG=true
+npx criai start --PORT=3000 --DEBUG=true
 ```
 
 ## 📖 Contribute to Docs
@@ -164,4 +164,4 @@ A member of the FlowiseAI team will automatically be notified/assigned when you 
 
 ## 📜 Code of Conduct
 
-This project and everyone participating in it are governed by the Code of Conduct which can be found in the [file](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to hello@flowiseai.com.
+This project and everyone participating in it are governed by the Code of Conduct which can be found in the [file](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to hello@criaiai.com.

@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD030 -->
 
-<img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.png?raw=true"></a>
+<img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/criai.png?raw=true"></a>
 
 # Flowise - 轻松构建 LLM 应用程序
 
@@ -14,7 +14,7 @@
 
 <h3>拖放界面构建定制化的LLM流程</h3>
 <a href="https://github.com/FlowiseAI/Flowise">
-<img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true"></a>
+<img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/criai.gif?raw=true"></a>
 
 ## ⚡ 快速入门
 
@@ -22,18 +22,18 @@
 
 1. 安装 Flowise
     ```bash
-    npm install -g flowise
+    npm install -g criai
     ```
 2. 启动 Flowise
 
     ```bash
-    npx flowise start
+    npx criai start
     ```
 
     使用用户名和密码
 
     ```bash
-    npx flowise start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
+    npx criai start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
     ```
 
 3. 打开 [http://localhost:3000](http://localhost:3000)
@@ -52,17 +52,17 @@
 
 1. 本地构建镜像：
     ```bash
-    docker build --no-cache -t flowise .
+    docker build --no-cache -t criai .
     ```
 2. 运行镜像：
 
     ```bash
-    docker run -d --name flowise -p 3000:3000 flowise
+    docker run -d --name criai -p 3000:3000 criai
     ```
 
 3. 停止镜像：
     ```bash
-    docker stop flowise
+    docker stop criai
     ```
 
 ## 👨‍💻 开发者
@@ -141,38 +141,38 @@ Flowise 支持不同的环境变量来配置您的实例。您可以在 `package
 
 ## 📖 文档
 
-[Flowise 文档](https://docs.flowiseai.com/)
+[Flowise 文档](https://docs.criaiai.com/)
 
 ## 🌐 自托管
 
-在您现有的基础设施中部署自托管的 Flowise，我们支持各种[部署](https://docs.flowiseai.com/configuration/deployment)
+在您现有的基础设施中部署自托管的 Flowise，我们支持各种[部署](https://docs.criaiai.com/configuration/deployment)
 
--   [AWS](https://docs.flowiseai.com/deployment/aws)
--   [Azure](https://docs.flowiseai.com/deployment/azure)
--   [Digital Ocean](https://docs.flowiseai.com/deployment/digital-ocean)
--   [GCP](https://docs.flowiseai.com/deployment/gcp)
+-   [AWS](https://docs.criaiai.com/deployment/aws)
+-   [Azure](https://docs.criaiai.com/deployment/azure)
+-   [Digital Ocean](https://docs.criaiai.com/deployment/digital-ocean)
+-   [GCP](https://docs.criaiai.com/deployment/gcp)
 -   <details>
       <summary>其他</summary>
 
-    -   [Railway](https://docs.flowiseai.com/deployment/railway)
+    -   [Railway](https://docs.criaiai.com/deployment/railway)
 
         [![在 Railway 上部署](https://railway.app/button.svg)](https://railway.app/template/pn4G8S?referralCode=WVNPD9)
 
-    -   [Render](https://docs.flowiseai.com/deployment/render)
+    -   [Render](https://docs.criaiai.com/deployment/render)
 
-        [![部署到 Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.flowiseai.com/deployment/render)
+        [![部署到 Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.criaiai.com/deployment/render)
 
-    -   [HuggingFace Spaces](https://docs.flowiseai.com/deployment/hugging-face)
+    -   [HuggingFace Spaces](https://docs.criaiai.com/deployment/hugging-face)
 
         <a href="https://huggingface.co/spaces/FlowiseAI/Flowise"><img src="https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm.svg" alt="HuggingFace Spaces"></a>
 
-    -   [Elestio](https://elest.io/open-source/flowiseai)
+    -   [Elestio](https://elest.io/open-source/criaiai)
 
-        [![Deploy](https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png)](https://elest.io/open-source/flowiseai)
+        [![Deploy](https://pub-da36157c854648669813f3f76c526c2b.r2.dev/deploy-on-elestio-black.png)](https://elest.io/open-source/criaiai)
 
-    -   [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
+    -   [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dcriai)
 
-        [![部署到 Sealos](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
+        [![部署到 Sealos](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dcriai)
 
     -   [RepoCloud](https://repocloud.io/details/?app_id=29)
 

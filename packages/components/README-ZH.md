@@ -6,12 +6,12 @@
 
 Flowise 的应用集成。包含节点和凭据。
 
-![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
+![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/criai.gif?raw=true)
 
 安装：
 
 ```bash
-npm i flowise-components
+npm i criai-components
 ```
 
 ## 许可证

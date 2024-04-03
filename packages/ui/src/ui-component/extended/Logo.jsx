@@ -1,5 +1,5 @@
-import logo from 'assets/images/criai_chat_logo.png'
-import logoDark from 'assets/images/criai_chat_logo_dark.png'
+import logo from '@/assets/images/criai_logo.png'
+import logoDark from '@/assets/images/criai_logo_dark.png'
 
 import { useSelector } from 'react-redux'
 

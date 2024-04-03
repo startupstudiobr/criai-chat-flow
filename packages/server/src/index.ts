@@ -75,7 +75,7 @@ import {
     webCrawl,
     getStoragePath,
     IFileUpload
-} from 'flowise-components'
+} from 'criai-components'
 import { createRateLimiter, getRateLimiter, initializeRateLimiter } from './utils/rateLimit'
 import { addAPIKey, compareKeys, deleteAPIKey, getApiKey, getAPIKeys, updateAPIKey } from './utils/apiKey'
 import { sanitizeMiddleware, getCorsOptions, getAllowedIframeOrigins } from './utils/XSS'
@@ -137,9 +137,9 @@ export class App {
 
     async config(socketIO?: Server) {
         // Limit is needed to allow sending/receiving base64 encoded string
-        const flowise_file_size_limit = process.env.FLOWISE_FILE_SIZE_LIMIT ?? '50mb'
-        this.app.use(express.json({ limit: flowise_file_size_limit }))
-        this.app.use(express.urlencoded({ limit: flowise_file_size_limit, extended: true }))
+        const criai_file_size_limit = process.env.FLOWISE_FILE_SIZE_LIMIT ?? '50mb'
+        this.app.use(express.json({ limit: criai_file_size_limit }))
+        this.app.use(express.urlencoded({ limit: criai_file_size_limit, extended: true }))
 
         if (process.env.NUMBER_OF_PROXIES && parseInt(process.env.NUMBER_OF_PROXIES) > 0)
             this.app.set('trust proxy', parseInt(process.env.NUMBER_OF_PROXIES))
@@ -205,7 +205,7 @@ export class App {
         this.app.get('/api/v1/ip', (request, response) => {
             response.send({
                 ip: request.ip,
-                msg: 'Check returned IP address in the response. If it matches your current IP address ( which you can get by going to http://ip.nfriedly.com/ or https://api.ipify.org/ ), then the number of proxies is correct and the rate limiter should now work correctly. If not, increase the number of proxies by 1 and restart Cloud-Hosted Flowise until the IP address matches your own. Visit https://docs.flowiseai.com/configuration/rate-limit#cloud-hosted-rate-limit-setup-guide for more information.'
+                msg: 'Check returned IP address in the response. If it matches your current IP address ( which you can get by going to http://ip.nfriedly.com/ or https://api.ipify.org/ ), then the number of proxies is correct and the rate limiter should now work correctly. If not, increase the number of proxies by 1 and restart Cloud-Hosted Flowise until the IP address matches your own. Visit https://docs.criaiai.com/configuration/rate-limit#cloud-hosted-rate-limit-setup-guide for more information.'
             })
         })
 
@@ -1025,8 +1025,8 @@ export class App {
                         const splitDataURI = file.split(',')
                         const filename = splitDataURI.pop()?.split(':')[1] ?? ''
                         const bf = Buffer.from(splitDataURI.pop() || '', 'base64')
-                        const filePath = path.join(getUserHome(), '.flowise', 'openai-assistant', filename)
-                        if (!fs.existsSync(path.join(getUserHome(), '.flowise', 'openai-assistant'))) {
+                        const filePath = path.join(getUserHome(), '.criai', 'openai-assistant', filename)
+                        if (!fs.existsSync(path.join(getUserHome(), '.criai', 'openai-assistant'))) {
                             fs.mkdirSync(path.dirname(filePath), { recursive: true })
                         }
                         if (!fs.existsSync(filePath)) {
@@ -1153,8 +1153,8 @@ export class App {
                         const splitDataURI = file.split(',')
                         const filename = splitDataURI.pop()?.split(':')[1] ?? ''
                         const bf = Buffer.from(splitDataURI.pop() || '', 'base64')
-                        const filePath = path.join(getUserHome(), '.flowise', 'openai-assistant', filename)
-                        if (!fs.existsSync(path.join(getUserHome(), '.flowise', 'openai-assistant'))) {
+                        const filePath = path.join(getUserHome(), '.criai', 'openai-assistant', filename)
+                        if (!fs.existsSync(path.join(getUserHome(), '.criai', 'openai-assistant'))) {
                             fs.mkdirSync(path.dirname(filePath), { recursive: true })
                         }
                         if (!fs.existsSync(filePath)) {
@@ -1252,13 +1252,13 @@ export class App {
 
         // Download file from assistant
         this.app.post('/api/v1/openai-assistants-file', async (req: Request, res: Response) => {
-            const filePath = path.join(getUserHome(), '.flowise', 'openai-assistant', req.body.fileName)
+            const filePath = path.join(getUserHome(), '.criai', 'openai-assistant', req.body.fileName)
             //raise error if file path is not absolute
             if (!path.isAbsolute(filePath)) return res.status(500).send(`Invalid file path`)
             //raise error if file path contains '..'
             if (filePath.includes('..')) return res.status(500).send(`Invalid file path`)
-            //only return from the .flowise openai-assistant folder
-            if (!(filePath.includes('.flowise') && filePath.includes('openai-assistant'))) return res.status(500).send(`Invalid file path`)
+            //only return from the .criai openai-assistant folder
+            if (!(filePath.includes('.criai') && filePath.includes('openai-assistant'))) return res.status(500).send(`Invalid file path`)
 
             if (fs.existsSync(filePath)) {
                 res.setHeader('Content-Disposition', contentDisposition(path.basename(filePath)))
@@ -1629,7 +1629,7 @@ export class App {
         // Serve UI static
         // ----------------------------------------
 
-        const packagePath = getNodeModulesPackagePath('flowise-ui')
+        const packagePath = getNodeModulesPackagePath('criai-ui')
         const uiBuildPath = path.join(packagePath, 'build')
         const uiHtmlPath = path.join(packagePath, 'build', 'index.html')
 

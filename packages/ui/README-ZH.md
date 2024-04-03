@@ -6,12 +6,12 @@
 
 Flowise 的 React 前端界面。
 
-![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/flowise.gif?raw=true)
+![Flowise](https://github.com/FlowiseAI/Flowise/blob/main/images/criai.gif?raw=true)
 
 安装：
 
 ```bash
-npm i flowise-ui
+npm i criai-ui
 ```
 
 ## 许可证
