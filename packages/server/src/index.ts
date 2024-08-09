@@ -2388,7 +2388,7 @@ export class App {
             removePromises.push(this.telemetry.flush())
             await Promise.all(removePromises)
         } catch (e) {
-            logger.error(`❌[server]: Flowise Server shut down error: ${e}`)
+            logger.error(`❌[server]: Criai Flow Server shut down error: ${e}`)
         }
     }
 }
@@ -2413,7 +2413,7 @@ export async function start(): Promise<void> {
     await serverApp.config(io)
 
     server.listen(port, () => {
-        logger.info(`⚡️ [server]: Flowise Server is listening at ${port}`)
+        logger.info(`⚡️ [server]: Criai Flow Server is listening at ${port}`)
     })
 }
 
