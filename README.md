@@ -4,7 +4,17 @@
 
 # Criai - Build LLM Apps Easily
 
+<<<<<<< HEAD
 English 
+=======
+[![Release Notes](https://img.shields.io/github/release/FlowiseAI/Flowise)](https://github.com/FlowiseAI/Flowise/releases)
+[![Discord](https://img.shields.io/discord/1087698854775881778?label=Discord&logo=discord)](https://discord.gg/jbaHfsRVBW)
+[![Twitter Follow](https://img.shields.io/twitter/follow/FlowiseAI?style=social)](https://twitter.com/FlowiseAI)
+[![GitHub star chart](https://img.shields.io/github/stars/FlowiseAI/Flowise?style=social)](https://star-history.com/#FlowiseAI/Flowise)
+[![GitHub fork](https://img.shields.io/github/forks/FlowiseAI/Flowise?style=social)](https://github.com/FlowiseAI/Flowise/fork)
+
+English | [中文](./i18n/README-ZH.md) | [日本語](./i18n/README-JA.md) | [한국어](./i18n/README-KR.md)
+>>>>>>> upstream/main
 
 <h3>Drag & drop UI to build your customized LLM flow</h3>
 <a href="https://github.com/startupstudiobr/criai-chat">
@@ -38,9 +48,9 @@ Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
 1. Go to `docker` folder at the root of the project
 2. Copy `.env.example` file, paste it into the same location, and rename to `.env`
-3. `docker-compose up -d`
+3. `docker compose up -d`
 4. Open [http://localhost:3000](http://localhost:3000)
-5. You can bring the containers down by `docker-compose stop`
+5. You can bring the containers down by `docker compose stop`
 
 ### Docker Image
 
@@ -76,31 +86,40 @@ Criai has 3 different modules in a single mono repository.
 
 ### Setup
 
-1. Clone the repository
+1.  Clone the repository
 
     ```bash
     git clone https://github.com/CriaiAI/Criai.git
     ```
 
-2. Go into repository folder
+2.  Go into repository folder
 
     ```bash
     cd Criai
     ```
 
-3. Install all dependencies of all modules:
+3.  Install all dependencies of all modules:
 
     ```bash
     pnpm install
     ```
 
-4. Build all the code:
+4.  Build all the code:
 
     ```bash
     pnpm build
     ```
 
-5. Start the app:
+    <details>
+    <summary>Exit code 134 (JavaScript heap out of memory)</summary>  
+      If you get this error when running the above `build` script, try increasing the Node.js heap size and run the script again:
+
+        export NODE_OPTIONS="--max-old-space-size=4096"
+        pnpm build
+
+    </details>
+
+5.  Start the app:
 
     ```bash
     pnpm start
@@ -108,7 +127,7 @@ Criai has 3 different modules in a single mono repository.
 
     You can now access the app on [http://localhost:3000](http://localhost:3000)
 
-6. For development build:
+6.  For development build:
 
     - Create `.env` file and specify the `VITE_PORT` (refer to `.env.example`) in `packages/ui`
     - Create `.env` file and specify the `PORT` (refer to `.env.example`) in `packages/server`

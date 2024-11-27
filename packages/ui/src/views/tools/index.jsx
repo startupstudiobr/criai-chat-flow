@@ -1,9 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
 
 // material-ui
-import { Grid, Box, Stack, Button } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
+import { Box, Stack, Button, ButtonGroup, Skeleton, ToggleButtonGroup, ToggleButton } from '@mui/material'
 
 // project imports
 import MainCard from '@/ui-component/cards/MainCard'
@@ -12,6 +10,7 @@ import { gridSpacing } from '@/store/constant'
 import ToolEmptySVG from '@/assets/images/tools_empty.svg'
 import { StyledButton } from '@/ui-component/button/StyledButton'
 import ToolDialog from './ToolDialog'
+import { ToolsTable } from '@/ui-component/table/ToolsListTable'
 
 // API
 import toolsApi from '@/api/tools'
@@ -20,20 +19,30 @@ import toolsApi from '@/api/tools'
 import useApi from '@/hooks/useApi'
 
 // icons
-import { IconPlus, IconFileImport } from '@tabler/icons'
+import { IconPlus, IconFileUpload, IconLayoutGrid, IconList } from '@tabler/icons-react'
+import ViewHeader from '@/layout/MainLayout/ViewHeader'
+import ErrorBoundary from '@/ErrorBoundary'
+import { useTheme } from '@mui/material/styles'
 
 // ==============================|| CHATFLOWS ||============================== //
 
 const Tools = () => {
     const theme = useTheme()
-    const customization = useSelector((state) => state.customization)
-
     const getAllToolsApi = useApi(toolsApi.getAllTools)
 
+    const [isLoading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
     const [showDialog, setShowDialog] = useState(false)
     const [dialogProps, setDialogProps] = useState({})
+    const [view, setView] = useState(localStorage.getItem('toolsDisplayStyle') || 'card')
 
     const inputRef = useRef(null)
+
+    const handleChange = (event, nextView) => {
+        if (nextView === null) return
+        localStorage.setItem('toolsDisplayStyle', nextView)
+        setView(nextView)
+    }
 
     const onUploadFile = (file) => {
         try {
@@ -101,44 +110,117 @@ const Tools = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    useEffect(() => {
+        setLoading(getAllToolsApi.loading)
+    }, [getAllToolsApi.loading])
+
+    useEffect(() => {
+        if (getAllToolsApi.error) {
+            setError(getAllToolsApi.error)
+        }
+    }, [getAllToolsApi.error])
+
     return (
         <>
-            <MainCard sx={{ background: customization.isDarkMode ? theme.palette.common.black : '' }}>
-                <Stack flexDirection='row'>
-                    <h1>Tools</h1>
-                    <Grid sx={{ mb: 1.25 }} container direction='row'>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Grid item>
-                            <Button
-                                variant='outlined'
-                                sx={{ mr: 2 }}
-                                onClick={() => inputRef.current.click()}
-                                startIcon={<IconFileImport />}
+            <MainCard>
+                {error ? (
+                    <ErrorBoundary error={error} />
+                ) : (
+                    <Stack flexDirection='column' sx={{ gap: 3 }}>
+                        <ViewHeader title='Tools'>
+                            <ToggleButtonGroup
+                                sx={{ borderRadius: 2, maxHeight: 40 }}
+                                value={view}
+                                color='primary'
+                                exclusive
+                                onChange={handleChange}
                             >
-                                Load
-                            </Button>
-                            <input ref={inputRef} type='file' hidden accept='.json' onChange={(e) => handleFileUpload(e)} />
-                            <StyledButton variant='contained' sx={{ color: 'white' }} onClick={addNew} startIcon={<IconPlus />}>
-                                Create
-                            </StyledButton>
-                        </Grid>
-                    </Grid>
-                </Stack>
-                <Grid container spacing={gridSpacing}>
-                    {!getAllToolsApi.loading &&
-                        getAllToolsApi.data &&
-                        getAllToolsApi.data.map((data, index) => (
-                            <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
-                                <ItemCard data={data} onClick={() => edit(data)} />
-                            </Grid>
-                        ))}
-                </Grid>
-                {!getAllToolsApi.loading && (!getAllToolsApi.data || getAllToolsApi.data.length === 0) && (
-                    <Stack sx={{ alignItems: 'center', justifyContent: 'center' }} flexDirection='column'>
-                        <Box sx={{ p: 2, height: 'auto' }}>
-                            <img style={{ objectFit: 'cover', height: '30vh', width: 'auto' }} src={ToolEmptySVG} alt='ToolEmptySVG' />
-                        </Box>
-                        <div>No Tools Created Yet</div>
+                                <ToggleButton
+                                    sx={{
+                                        borderColor: theme.palette.grey[900] + 25,
+                                        borderRadius: 2,
+                                        color: theme?.customization?.isDarkMode ? 'white' : 'inherit'
+                                    }}
+                                    variant='contained'
+                                    value='card'
+                                    title='Card View'
+                                >
+                                    <IconLayoutGrid />
+                                </ToggleButton>
+                                <ToggleButton
+                                    sx={{
+                                        borderColor: theme.palette.grey[900] + 25,
+                                        borderRadius: 2,
+                                        color: theme?.customization?.isDarkMode ? 'white' : 'inherit'
+                                    }}
+                                    variant='contained'
+                                    value='list'
+                                    title='List View'
+                                >
+                                    <IconList />
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                <Button
+                                    variant='outlined'
+                                    onClick={() => inputRef.current.click()}
+                                    startIcon={<IconFileUpload />}
+                                    sx={{ borderRadius: 2, height: 40 }}
+                                >
+                                    Load
+                                </Button>
+                                <input
+                                    style={{ display: 'none' }}
+                                    ref={inputRef}
+                                    type='file'
+                                    hidden
+                                    accept='.json'
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                            </Box>
+                            <ButtonGroup disableElevation aria-label='outlined primary button group'>
+                                <StyledButton
+                                    variant='contained'
+                                    onClick={addNew}
+                                    startIcon={<IconPlus />}
+                                    sx={{ borderRadius: 2, height: 40 }}
+                                >
+                                    Create
+                                </StyledButton>
+                            </ButtonGroup>
+                        </ViewHeader>
+                        {!view || view === 'card' ? (
+                            <>
+                                {isLoading ? (
+                                    <Box display='grid' gridTemplateColumns='repeat(3, 1fr)' gap={gridSpacing}>
+                                        <Skeleton variant='rounded' height={160} />
+                                        <Skeleton variant='rounded' height={160} />
+                                        <Skeleton variant='rounded' height={160} />
+                                    </Box>
+                                ) : (
+                                    <Box display='grid' gridTemplateColumns='repeat(3, 1fr)' gap={gridSpacing}>
+                                        {getAllToolsApi.data &&
+                                            getAllToolsApi.data.map((data, index) => (
+                                                <ItemCard data={data} key={index} onClick={() => edit(data)} />
+                                            ))}
+                                    </Box>
+                                )}
+                            </>
+                        ) : (
+                            <ToolsTable data={getAllToolsApi.data} isLoading={isLoading} onSelect={edit} />
+                        )}
+                        {!isLoading && (!getAllToolsApi.data || getAllToolsApi.data.length === 0) && (
+                            <Stack sx={{ alignItems: 'center', justifyContent: 'center' }} flexDirection='column'>
+                                <Box sx={{ p: 2, height: 'auto' }}>
+                                    <img
+                                        style={{ objectFit: 'cover', height: '20vh', width: 'auto' }}
+                                        src={ToolEmptySVG}
+                                        alt='ToolEmptySVG'
+                                    />
+                                </Box>
+                                <div>No Tools Created Yet</div>
+                            </Stack>
+                        )}
                     </Stack>
                 )}
             </MainCard>
@@ -147,6 +229,7 @@ const Tools = () => {
                 dialogProps={dialogProps}
                 onCancel={() => setShowDialog(false)}
                 onConfirm={onConfirm}
+                setError={setError}
             ></ToolDialog>
         </>
     )
